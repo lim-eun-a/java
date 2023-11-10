@@ -92,6 +92,22 @@ public class E03Whil
 		}
 		System.out.println("\n=========================\n");
 		
+		
+		
+		int su1 = 1;
+		// 수의 대한 조건
+		while(su1<=9) {
+			int dan1 = 2;
+			while(dan1<=9) {
+				System.out.printf("%-2d*%-2d=%2d", dan1, su1, (dan1*su1));
+				System.out.print(" ");
+				dan1++;
+			}
+			System.out.println();
+			su1++;			
+		}
+		System.out.println("\n=========================\n");
+		
 		/*
 		시나리오] 아래와 같은 모양을 출력하는 while문을 작성하시오.
 			출력결과
