@@ -47,8 +47,8 @@ public class E02StringMethod1
 		 5. contains(): 문자열에 특정 문자열이 포함되어 있는지를 판단하여 포함되었을 때 true를 반환
 		 */
 		System.out.println("### 5 ###");
-		System.out.println(str1.contains("TO"));
-		System.out.println(str1.contains("to"));
+		System.out.println(str1.contains("TO")); //false
+		System.out.println(str1.contains("to")); //true
 	}
 
 }
