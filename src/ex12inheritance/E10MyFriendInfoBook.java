@@ -72,14 +72,14 @@ public class E10MyFriendInfoBook
 {
 	public static void menuShow() {
 		System.out.println("######## 메뉴를 입력하세요 ########");
-		System.out.println("1. 고딩친구입력 ");
+		System.out.print("1. 고딩친구입력 ");
 		System.out.println("2. 대딩친구입력 ");
-		System.out.println("3. 전체정보출력 ");
+		System.out.print("3. 전체정보출력 ");
 		System.out.println("4. 간략정보출력 ");
-		System.out.println("5. 검색 ");
-		System.out.println("6. 삭제 ");
+		System.out.print("5. 검색 ");
+		System.out.print("6. 삭제 ");
 		System.out.println("7. 프로그램종료 ");
-		System.out.println("메뉴선택>>>");
+		System.out.print("메뉴선택>>>");
 	}
 	
 	public static void main(String[] args)
@@ -133,5 +133,72 @@ class FriendInfoHandler{
 		System.out.print("전화번호:"); iPhone = scan.nextLine();
 		System.out.print("주소:"); iAddr = scan.nextLine();
 		
+		if(choice==1) {
+			System.out.print("별명: "); iNickname = scan.nextLine();
+			HighFriend high = new HighFriend(iName, iPhone, iAddr, iNickname);
+			myFriends[numOfFriends++] = high;
+		}
+		else if(choice==2) {
+			System.out.print("전공: "); iMajor = scan.nextLine();
+			myFriends[numOfFriends++] = new UnivFriend(iName, iPhone, iAddr, iMajor);
+		}
+		System.out.println("친구정보 입력이 완료되었습니다.");
+	}
+	
+	public void showAllData() {
+		for(int i=0; i<numOfFriends; i++) {
+			myFriends[i].showAllData();
+		}
+		System.out.println("==전체정보가 출력되었습니다.==");
+	}
+	public void showSimpleData() {
+		for(int i=0; i<numOfFriends; i++) {
+			myFriends[i].showBasicInfo();
+		}
+		System.out.println("==간략정보가 출력되었습니다.==");
+	}
+	public void searchInfo() {
+		boolean isFind = false;
+		Scanner scan = new Scanner(System.in);
+		System.out.print("검색할 이름을 입력하세요: ");
+		String searchName = scan.nextLine();
+		
+		for(int i=0; i<numOfFriends;i++) { // myFriends.length X
+			if(searchName.compareTo(myFriends[i].name)==0) {  //compareTo() 대신 equals() 사용 가능
+				myFriends[i].showAllData();
+				System.out.println("**귀하가 요청하는 정보를 찾았습니다.**");
+				isFind = true;
+			}
+		}
+		if(isFind == false) {
+			System.out.println("***찾는 정보가 없습니다.***");
+		}
+		System.out.println("===전체정보가 출력되었습니다.===");
+	}
+	//주소록 삭제
+	public void deleteInfo() {
+		Scanner scan = new Scanner(System.in);
+		System.out.print("삭제할 이름을 입력하세요: ");
+		String deleteName = scan.nextLine();
+		int deleteIndex = -1;
+		
+		for(int i=0; i<numOfFriends; i++) {
+			if(deleteName.compareTo(myFriends[i].name)==0) {
+				myFriends[i] = null;
+				deleteIndex = i;
+				numOfFriends--;
+				break;
+			}
+		}
+		
+		if(deleteIndex==-1) {
+			System.out.println("==삭제된 데이터가 없습니다.==");
+		}
+		else {
+			for(int i=deleteIndex; i<numOfFriends ; i++) {
+				myFriends[i] = myFriends[i+1];
+			}
+			System.out.println("==데이터("+deleteIndex+"번)가 삭제되었습니다.==");
+		}
 	}
 }
