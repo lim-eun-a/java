@@ -17,6 +17,7 @@ class yourFriends extends Object{
 		myName = name;
 	}
 }
+
 public class E04Object1toString
 {
 
