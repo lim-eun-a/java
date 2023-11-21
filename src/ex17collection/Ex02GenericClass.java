@@ -48,6 +48,7 @@ public class Ex02GenericClass
 	{
 		GenericFruitBox<Apple> appleBox = new GenericFruitBox<Apple>();
 		appleBox.store(new Apple(10));
+//		Apple a = new Apple(10);
 		Apple apple = appleBox.pullOut();
 		apple.showInfo();
 		
